@@ -9,3 +9,29 @@ then under each folders you need too create classes folders, and put your pictur
 before training the model, you need to check the fit setting(main.py line 58-60) is suitable for your hardware otherwise it may lead to crash.
 
 ok that all go training your own model~
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+coding by 蕭鴨鴨 闕承勳 陳鴻笙 杜伊凡 黃燈燈
