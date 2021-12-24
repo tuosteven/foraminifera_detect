@@ -12,6 +12,9 @@ ok that all go training your own model~
 
 
 
+(ps the edge_detect_def and webcam_save_pic_button are for getting data)
+
+
 
 
 
