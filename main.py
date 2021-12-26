@@ -10,11 +10,14 @@ from keras.models import Sequential
 from keras.layers import Dense, Conv2D, MaxPool2D , Flatten
 from keras.preprocessing.image import ImageDataGenerator
 import numpy as np
+import pandas as pd
 # In[]:
+    
 trdata = ImageDataGenerator()
-traindata = trdata.flow_from_directory(directory="data",target_size=(150,150))
+traindata = trdata.flow_from_directory(directory="C:/Users/acer/Desktop/dpml/foraminiera_detect/data",target_size=(150,150), batch_size = 16)
 tsdata = ImageDataGenerator()
-testdata = tsdata.flow_from_directory(directory="test", target_size=(150,150))
+testdata = tsdata.flow_from_directory(directory="C:/Users/acer/Desktop/dpml/foraminiera_detect/test", target_size=(150,150), batch_size = 16)
+print(tsdata)
 
 
 # In[]:
@@ -48,7 +51,7 @@ model.add(Dense(units=2, activation="softmax"))
 # In[]:
 
 from keras.optimizers import Adam
-opt = Adam(lr=0.001)
+opt = Adam(lr=0.01)
 model.compile(optimizer=opt, loss=keras.losses.categorical_crossentropy, metrics=['accuracy'])
 
 model.summary()
@@ -57,4 +60,40 @@ model.summary()
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 checkpoint = ModelCheckpoint("vgg16_1.h5", monitor='val_acc', verbose=1, save_best_only=True, save_weights_only=False, mode='auto', period=1)
 early = EarlyStopping(monitor='val_acc', min_delta=0, patience=20, verbose=1, mode='auto')
-hist = model.fit_generator(steps_per_epoch=100,generator=traindata, validation_data= testdata, validation_steps=10,epochs=100,callbacks=[checkpoint,early])
+hist = model.fit_generator(steps_per_epoch=100,generator=traindata, validation_data= testdata, validation_steps=10,epochs=10,callbacks=[checkpoint,early])
+
+# In[]:
+model.save("model1_catsVSdogs_10epoch.h5")
+# In[]:
+import matplotlib.pyplot as plt
+plt.plot(hist.history["acc"])
+plt.plot(hist.history['val_acc'])
+plt.plot(hist.history['loss'])
+plt.plot(hist.history['val_loss'])
+plt.title("model accuracy")
+plt.ylabel("Accuracy")
+plt.xlabel("Epoch")
+plt.legend(["Accuracy","Validation Accuracy","loss","Validation Loss"])
+plt.show()
+
+# In[]:
+import keras,os
+from keras.models import Sequential
+from keras.layers import Dense, Conv2D, MaxPool2D , Flatten
+from keras.preprocessing.image import ImageDataGenerator
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from keras.preprocessing import image
+img = image.load_img("./output/31.jpg",target_size=(150,150))
+img = np.asarray(img)
+plt.imshow(img)
+img = np.expand_dims(img, axis=0)
+from keras.models import load_model
+saved_model = load_model("model1_catsVSdogs_10epoch.h5")
+output = saved_model.predict(img)
+print(output)
+if output[0][0] > output[0][1]:
+    print("Baculogypsina")
+else:
+    print('Calcarina')    
