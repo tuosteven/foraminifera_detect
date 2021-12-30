@@ -1,5 +1,6 @@
 # foraminiera_detect
 detect foraminiera by vgg16 using python.
+also include a model i build
 
 
 you need to create two folders to put the training data and testing data.
