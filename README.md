@@ -18,9 +18,10 @@ ok that all go training your own model~
 
 
 after training and save the model as .h5 file, you can use predict.py to see the final result.
+
 there is a function called predict(path) , you can use it to predict.
 
-
+pretrained model https://drive.google.com/file/d/1Sd3jb7R30IvgXZUZZ7D89UkPBytPtmYu/view?usp=sharing
 
 
 
