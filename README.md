@@ -25,6 +25,10 @@ pretrained model https://drive.google.com/file/d/1Sd3jb7R30IvgXZUZZ7D89UkPBytPtm
 
 
 
+the /code file is the final product you can use it to detect Baculogypsina and Calcarina.
+
+
+
 
 
 
