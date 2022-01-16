@@ -1,4 +1,4 @@
-# foraminiera_detect
+# foraminifera_detect
 detect foraminiera by vgg16 using python.
 also include a model i build
 
